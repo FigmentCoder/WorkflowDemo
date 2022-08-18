@@ -5,8 +5,12 @@ namespace WorkflowDemo.Persistence.Services
 {
     internal static class PathReader
     {
-        public static FilePath Read(FolderName folderName, EmailNumber emailNumber, ExtensionName extensionName)
-            => string.Format(folderName + "-" + emailNumber + "." + extensionName)
+        public static FilePath Read(
+            FolderName folderName,
+            EmailNumber emailNumber,
+            ExtensionName extensionName)
+            => string
+                .Format(folderName + "-" + emailNumber + "." + extensionName)
                 .Pipe(fileName => $"{Folder.Path + folderName}\\{fileName}");
     }
 }

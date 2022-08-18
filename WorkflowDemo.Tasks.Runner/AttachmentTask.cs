@@ -16,7 +16,8 @@ namespace WorkflowDemo.Tasks.Runner
                select s;
 
         private static Either<Exception, Unit> StartP()
-            => AttachmentTaskP.Start(AttachmentRepository.Read,
+            => AttachmentTaskP.Start(
+                AttachmentRepository.Read,
                 AttachmentRepository.Save,
                 FolderCreator.Create);
     }

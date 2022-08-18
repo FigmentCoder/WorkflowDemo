@@ -1,7 +1,10 @@
 ﻿using System;
 using LanguageExt;
+
 using WorkflowDemo.Persistence.Services;
+
 using MailTaskP = WorkflowDemo.Tasks.Services.MailTask;
+
 using static WorkflowDemo.Logging.Models.Message;
 using static WorkflowDemo.Tasks.Runner.TaskLogger;
 
@@ -16,7 +19,8 @@ namespace WorkflowDemo.Tasks.Runner
                select s;
 
         private static Either<Exception, Unit> StartP()
-            => MailTaskP.Start(MailRepository.Read,
+            => MailTaskP.Start(
+                MailRepository.Read,
                 MailRepository.Save,
                 FolderCreator.Create);
     }

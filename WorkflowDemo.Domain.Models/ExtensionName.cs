@@ -17,7 +17,9 @@ namespace WorkflowDemo.Domain.Models
         private readonly string Value;
 
         public static bool IsNullOrEmpty(ExtensionName extensionName)
-            => extensionName.IsNull() || extensionName.IsNull() || extensionName.Value.Length == 0;
+            => extensionName.IsNull() || 
+               extensionName.IsNull() ||
+               extensionName.Value.Length == 0;
 
         public static implicit operator ExtensionName(string value)
             => New(value);

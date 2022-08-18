@@ -17,7 +17,9 @@ namespace WorkflowDemo.Domain.Models
         private readonly string Value;
 
         public static bool IsNullOrEmpty(FilePath filePath)
-            => filePath.IsNull() || filePath.IsNull() || filePath.Value.Length == 0;
+            => filePath.IsNull() ||
+               filePath.IsNull() ||
+               filePath.Value.Length == 0;
         
         public static implicit operator FilePath(string value)
             => New(value);

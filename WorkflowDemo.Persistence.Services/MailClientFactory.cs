@@ -1,6 +1,8 @@
 ﻿using System;
+
 using EAGetMail;
 using LanguageExt;
+
 using static System.Configuration.ConfigurationManager;
 
 namespace WorkflowDemo.Persistence.Services

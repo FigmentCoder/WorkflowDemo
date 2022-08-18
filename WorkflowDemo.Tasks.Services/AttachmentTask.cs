@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+
 using LanguageExt;
+
 using WorkflowDemo.Domain.Interfaces;
 using WorkflowDemo.Domain.Models;
 using static WorkflowDemo.Common.Services.ExceptionExtensions;
@@ -15,13 +17,13 @@ namespace WorkflowDemo.Tasks.Services
             CreateFolder createFolder)
         {
             if (readAttachments.IsNull())
-                return ArgumentNullException(nameof(readAttachments));
+                return NullException(nameof(readAttachments));
 
             if (saveAttachments.IsNull())
-                return ArgumentNullException(nameof(saveAttachments));
+                return NullException(nameof(saveAttachments));
 
             if (createFolder.IsNull())
-                return ArgumentNullException(nameof(createFolder));
+                return NullException(nameof(createFolder));
 
             return readAttachments(f => !f.IsIncluded())
                 .Bind(ms => ms.Map(m => createFolder(m.FolderName)

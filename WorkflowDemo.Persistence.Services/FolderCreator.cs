@@ -1,8 +1,11 @@
 ﻿using System;
 using System.IO;
+
 using LanguageExt;
+
 using WorkflowDemo.Common.Services;
 using WorkflowDemo.Domain.Models;
+
 using static WorkflowDemo.Common.Services.ExceptionExtensions;
 
 namespace WorkflowDemo.Persistence.Services
@@ -12,7 +15,7 @@ namespace WorkflowDemo.Persistence.Services
         public static Either<Exception, Unit> Create(FolderName folder)
         {
             if (FolderName.IsNullOrEmpty(folder))
-                return ArgumentNullException(nameof(folder));
+                return NullException(nameof(folder));
 
             try
             {

@@ -17,7 +17,9 @@ namespace WorkflowDemo.Domain.Models
         private readonly string Value;
 
         public static bool IsNullOrEmpty(FolderName folderName)
-            => folderName.IsNull() || folderName.IsNull() || folderName.Value.Length == 0;
+            => folderName.IsNull() ||
+               folderName.IsNull() ||
+               folderName.Value.Length == 0;
         
         public static implicit operator FolderName(string value)
             => New(value);
