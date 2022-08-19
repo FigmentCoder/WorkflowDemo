@@ -9,6 +9,7 @@ using WorkflowDemo.Common.Services;
 using WorkflowDemo.Domain.Models;
 
 using static WorkflowDemo.Common.Services.ExceptionExtensions;
+using static WorkflowDemo.Domain.Models.FolderNameConstructor;
 using static WorkflowDemo.Persistence.Services.MailClientFactory;
 
 namespace WorkflowDemo.Persistence.Services
@@ -29,7 +30,7 @@ namespace WorkflowDemo.Persistence.Services
                         .Map(folder =>
                         {
                             mailClient.SelectFolder(folder);
-                            return (FolderName.New(folder.Name), mailClient.GetAttachments());
+                            return (FolderName(folder.Name), mailClient.GetAttachments());
                         }));
         }
 
@@ -46,7 +47,8 @@ namespace WorkflowDemo.Persistence.Services
             {
                 attachments.ForEach((emailNumber, attachment) =>
                 {
-                    PathReader.Read(folderName, emailNumber, "csv")
+                    PathReader
+                        .Read(folderName, emailNumber, "csv")
                         .Pipe(path => attachment.SaveAs(path, true));
                 });
             }
