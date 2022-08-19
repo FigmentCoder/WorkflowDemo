@@ -32,4 +32,11 @@ namespace WorkflowDemo.Domain.Models
         public override string ToString()
             => Value;
     }
+
+    public static class FolderNameConstructor
+    {
+        public static FolderName FolderName(
+            string value)
+            => Models.FolderName.New(value);
+    }
 }

@@ -6,6 +6,7 @@ using LanguageExt;
 using WorkflowDemo.Common.Services;
 using WorkflowDemo.Domain.Models;
 
+using static System.IO.Directory;
 using static WorkflowDemo.Common.Services.ExceptionExtensions;
 
 namespace WorkflowDemo.Persistence.Services
@@ -19,8 +20,10 @@ namespace WorkflowDemo.Persistence.Services
 
             try
             {
-               Folder.Path.Concat(folder).Pipe(d => Directory.Exists(d)
-                   .IfFalse(() => Directory.CreateDirectory(d)));
+               Folder.Path
+                   .Concat(folder)
+                   .Pipe(d => Exists(d)
+                       .IfFalse(() => CreateDirectory(d)));
             }
             catch (Exception exception)
             {

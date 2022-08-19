@@ -8,6 +8,7 @@ using LanguageExt;
 using WorkflowDemo.Common.Services;
 using WorkflowDemo.Domain.Models;
 
+using static WorkflowDemo.Domain.Models.FolderNameConstructor;
 using static WorkflowDemo.Common.Services.ExceptionExtensions;
 using static WorkflowDemo.Persistence.Services.MailClientFactory;
 
@@ -29,11 +30,12 @@ namespace WorkflowDemo.Persistence.Services
                         .Map(folder =>
                         {
                             mailClient.SelectFolder(folder);
-                            return (FolderName.New(folder.Name), mailClient.GetEmails());
+                            return (FolderName(folder.Name), mailClient.GetEmails());
                         }));
         }
 
-        public static Either<Exception, Unit> Save(FolderName folderName, IEnumerable<Mail> mails)
+        public static Either<Exception, Unit> Save(
+            FolderName folderName, IEnumerable<Mail> mails)
         {
             if (folderName.IsNull()) 
                 return NullException(nameof(folderName));
@@ -45,7 +47,8 @@ namespace WorkflowDemo.Persistence.Services
             {
                 mails.ForEach((index, mail) => 
                 {
-                    PathReader.Read(folderName, index, "eml")
+                    PathReader
+                        .Read(folderName, index, "eml")
                         .Pipe(path => mail.SaveAs(path, true));
                 });
             }
