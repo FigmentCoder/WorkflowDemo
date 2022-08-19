@@ -1,6 +1,5 @@
 ﻿using System;
 using LanguageExt;
-
 using WorkflowDemo.Persistence.Services;
 
 using MailTaskP = WorkflowDemo.Tasks.Services.MailTask;

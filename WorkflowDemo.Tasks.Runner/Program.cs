@@ -1,9 +1,10 @@
 ﻿using MTask = WorkflowDemo.Tasks.Runner.MailTask;
 using ATask = WorkflowDemo.Tasks.Runner.AttachmentTask;
 
+using static System.Console;
+
 using static WorkflowDemo.Logging.Models.Message;
 using static WorkflowDemo.Tasks.Runner.TaskLogger;
-using static System.Console;
 
 namespace WorkflowDemo.Tasks.Runner
 {
